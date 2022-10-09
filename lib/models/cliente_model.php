@@ -3,6 +3,7 @@ class Cliente{
     private $cli_nome;
     private $cli_email;
     private $cli_sexo;
+    private $cli_image;
 
     function getCli_id() {
         return $this->cli_id;
@@ -20,6 +21,10 @@ class Cliente{
         return $this->cli_id;
     }
 
+    function getCli_image() {
+        return $this->cli_image;
+    }
+
     function setCli_id($cli_id) {
         $this->cli_id = $cli_id;
     }
@@ -34,6 +39,10 @@ class Cliente{
 
     function setCli_sexo($cli_sexo) {
         $this->cli_sexo = $cli_sexo;
+    }
+
+    function setCli_image($image) {
+        $this->cli_image = $image;
     }
 
 }

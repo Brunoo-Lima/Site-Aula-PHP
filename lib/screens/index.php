@@ -1,5 +1,5 @@
 <?php 
-  include("dao/conexao.php");
+  include("../dao/conexao.php");
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cadastro de Hoteis</title>
   <script src="https://unpkg.com/feather-icons"></script>
-  <link type="image/png" sizes="16x16" rel="icon" href="imagens/icone1.png">
+  <link type="image/png" sizes="16x16" rel="icon" href="../imagens/icone1.png">
   <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
