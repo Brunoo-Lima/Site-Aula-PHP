@@ -1,6 +1,6 @@
 class Database {
     function pegarDadosCliente($cliente) {
-        SELECT * FROM cliente WHERE cli_email = ". $cliente->email;
+        $con = "SELECT * FROM cliente WHERE cli_email = ". $cliente->email;
     }
 
     function cadastrarCliente($cliente) {
