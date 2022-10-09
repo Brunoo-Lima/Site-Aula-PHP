@@ -1,3 +1,6 @@
+<?php 
+  include("dao/conexao.php");
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
