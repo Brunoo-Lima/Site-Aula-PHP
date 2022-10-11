@@ -27,13 +27,73 @@ body {
     font-size: 3vh;
 }
 
+
+nav#menu_title {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: var(--cor4);
+    box-shadow: 1px 1px 13px rgba(0, 0, 0, 0.521);
+    padding: 20px 0;
+    flex-wrap: wrap;
+}
+
+.logo {
+    text-decoration: none;
+    font-family: var(--fonte02);
+    font-size: 2.5rem;
+    color: var(--cor0);
+    padding: 15px;
+    margin: 15px 0;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+}
+
+.nav-list li {
+    margin-left: 10px;
+    letter-spacing: 1px;
+    justify-content: center;
+}
+
+nav#menu_title .nav-list a {
+    padding: 10px;
+    text-decoration: none;
+    font-size: 1rem;
+    color: var(--cor0);
+    background-color: var(--cor4);
+    border-radius: 12px;
+    flex-wrap: wrap;
+}
+
+nav#menu_title a:hover {
+    color: var(--cor3);
+    background-color: var(--cor0);
+}
+
+nav#menu_title a.right {
+    color: var(--cor2);
+    background-color: var(--cor3);
+    border: 1px solid var(--cor2);
+}
+
+nav#menu_title a.right:hover {
+    color: var(--cor3);
+    background-color: var(--cor2);
+    transition: all 0.5s ease-in;
+}
+
+
 main {
     max-width: 950px;
     margin: auto;
     color: var(--cor0);
     background-color: #0b1c42;
-    margin: 10px auto 10px auto;
+    margin: 0 auto 10px auto;
     border-radius: 20px;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.521);
 }
 
 .card-cadastro {
@@ -155,4 +215,11 @@ input.btn {
 
 input.btn:hover {
     background-color: #0aaaaa;
+}
+
+footer {
+    text-align: center;
+    color: var(--cor0);
+    background-color: var(--cor1);
+    padding: 10px;
 }

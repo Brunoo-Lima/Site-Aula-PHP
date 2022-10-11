@@ -11,15 +11,15 @@
 }
 
 :root {
-    --cor0:#ffffff;
-    --cor1:#000000;
-    --cor2:#00ffff;
-    --cor3:#0036B3;
-    --cor4:#001F66;
-    --cor5:#ffa500;
+    --cor0: #ffffff;
+    --cor1: #000000;
+    --cor2: #00ffff;
+    --cor3: #0036B3;
+    --cor4: #001F66;
+    --cor5: #ffa500;
 
-    --fonte01:'Roboto Condensed', sans-serif;
-    --fonte02:'Satisfy', sans-serif;
+    --fonte01: 'Roboto Condensed', sans-serif;
+    --fonte02: 'Satisfy', sans-serif;
 }
 
 main {
@@ -27,8 +27,10 @@ main {
     height: 100vh;
     background-color: var(--cor4);
     display: flex;
-    justify-content: center; /*eixo x*/
-    align-items: center; /*eixo y*/
+    justify-content: center;
+    /*eixo x*/
+    align-items: center;
+    /*eixo y*/
     font-family: var(--fonte01);
 }
 
@@ -42,7 +44,7 @@ main {
 }
 
 .left h1 {
-    color:var(--cor0);
+    color: var(--cor0);
     font-size: 3vw;
     font-family: var(--fonte02);
     padding-left: 10px;
@@ -59,7 +61,7 @@ main {
     align-items: center;
     flex-direction: column;
     padding: 30px 35px;
-    background:#061538;
+    background: #061538;
     border-radius: 20px;
     box-shadow: 0px 10px 40px #000056;
 }
@@ -81,7 +83,7 @@ main {
 
 .usuario-texto input {
     width: 100%;
-    border:none;
+    border: none;
     border-radius: 10px;
     padding: 15px;
     background-color: rgba(128, 128, 128, 0.527);
@@ -138,7 +140,6 @@ main {
 @media only screen and (max-width: 600px) {
     main {
         flex-wrap: wrap;
-        flex-direction: column;
     }
 
     .left h1 {
