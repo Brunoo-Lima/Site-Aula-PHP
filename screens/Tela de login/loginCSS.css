@@ -1,0 +1,162 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;1,400;1,700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --cor0: #ffffff;
+    --cor1: #000000;
+    --cor2: #00ffff;
+    --cor3: #0036B3;
+    --cor4: #001F66;
+    --cor5: #ffa500;
+
+    --fonte01: 'Roboto Condensed', sans-serif;
+    --fonte02: 'Satisfy', sans-serif;
+}
+
+main {
+    max-width: 100vw;
+    height: 100vh;
+    background-color: var(--cor4);
+    display: flex;
+    justify-content: center;
+    /*eixo x*/
+    align-items: center;
+    /*eixo y*/
+    font-family: var(--fonte01);
+}
+
+.left .right {
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.left h1 {
+    color: var(--cor0);
+    font-size: 3vw;
+    font-family: var(--fonte02);
+    padding-left: 10px;
+}
+
+.viagem {
+    width: 30vw;
+}
+
+.card-login {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 30px 35px;
+    background: #061538;
+    border-radius: 20px;
+    box-shadow: 0px 10px 40px #000056;
+}
+
+.card-login h1 {
+    color: var(--cor0);
+    font-weight: 800;
+    margin: 0;
+}
+
+.usuario-texto {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.usuario-texto input {
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    background-color: rgba(128, 128, 128, 0.527);
+    color: var(--cor0);
+    font-size: 12pt;
+    box-shadow: 0px 10px 40px #000056;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.usuario-texto label {
+    color: var(--cor0);
+    margin-bottom: 10px;
+}
+
+.usuario-texto ::placeholder {
+    color: #ffffff8c;
+}
+
+.btn-login {
+    width: 100%;
+    padding: 10px 0px;
+    margin: 25px;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: 0px 10px 40px -12px var(--cor0);
+}
+
+.cadastro p {
+    color: var(--cor0);
+}
+
+.cadastro a {
+    text-decoration: underline;
+    color: var(--cor2);
+    font-weight: bold;
+}
+
+.cadastro a:hover {
+    text-decoration: none;
+}
+
+@media only screen and (max-width: 800px) {
+    .card-login {
+        width: 85%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    main {
+        flex-wrap: wrap;
+    }
+
+    .left h1 {
+        font-size: 5vw;
+    }
+
+    .left .right {
+        width: 100%;
+        height: auto;
+    }
+
+    .left .viagem {
+        width: 50vw;
+    }
+
+    .card-login {
+        width: 90%;
+        margin: auto;
+    }
+}
