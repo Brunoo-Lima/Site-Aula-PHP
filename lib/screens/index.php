@@ -1,5 +1,7 @@
 <?php
-include("../dao/conexao.php");
+session_start();
+$mysqli = include("../dao/conexao.php");
+echo $_SESSION['nome'];
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -24,7 +26,7 @@ include("../dao/conexao.php");
         <li><a href="#Serviços">Serviços</a></li>
         <li><a href="/lib/screens/tela cadastro hotel/cadHotel.html" target="_blank">Hoteis</a></li>
         <li><a href="tela de cadastro/cadastro.html" class="right" target="_blank">Cadastrar</a></li>
-        <li><a href="Tela de login/login.html" class="right" target="_blank">Login</a></li>
+        <li><a href="Tela de login/login.php" class="right" target="_blank">Login</a></li>
       </ul>
     </nav>
   </header>
@@ -39,27 +41,33 @@ include("../dao/conexao.php");
       <div class="class pacotes-cards">
         <!--Pacote 1-->
 
-        <div class="card">
-          <div class="card-tag card-tag-top">
-            <p>Promoção</p>
-          </div>
+      <?php
+        $result = mysqli_query($mysqli, "SELECT * FROM hotel");
+        while($obj = $result->fetch_object()) {
+          echo '<a href="teladoholtel?'.$obj->hot_id.'">';
+          echo "<div class='card'>";
+          echo "<div class='card-tag card-tag-top'>";
+          echo "<p>Promoção</p>";
+          echo "</div>";
+          echo "<div class='card-tag card-tag-bottom'>";
+          echo "<p>R$ ".$obj->hot_preco."</p>";
+          echo "</div>";
+          echo "<img class='card-image' src='".$obj->hot_img."' alt='Orlando'>";
+          echo "<div class='card-content'>";
+          echo "<h1>".$obj->hot_nome."</h1>";
+          echo "<ul>
+              <li><i data-feather='coffee'></i> Café da manhã incluso</li>
+              <li><i data-feather='wifi'></i> Wi-fi</li> 
+              <li><i data-feather='briefcase'></i> Pet friendly</li> 
+              </ul>";
+          echo "</div>";
+          echo "</div>";
+          echo "</a>";
+        }
+      
+      ?>
 
-          <div class="card-tag card-tag-bottom">
-            <p>R$ 4.500,00</p>
-          </div>
-
-          <img class="card-image" src="https://images.unsplash.com/photo-1514214246283-d427a95c5d2f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8bWlhbWl8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" alt="Miami">
-          <div class="card-content">
-            <h1>Miami - 5 noites Hotel Premium</h1>
-            <ul>
-              <li><i data-feather="coffee"></i> Café da manhã incluso</li>
-              <li><i data-feather="wifi"></i> Wi-fi</li>
-              <li><i data-feather="briefcase"></i> Pet friendly</li>
-            </ul>
-          </div>
-        </div>
-
-        <!--Pacote 2-->
+        <!--Pacote 2
         <div class="card">
           <div class="card-tag card-tag-top">
             <p>Promoção</p>
@@ -78,9 +86,11 @@ include("../dao/conexao.php");
               <li><i data-feather="briefcase"></i> Pet friendly</li>
             </ul>
           </div>
-        </div>
+        </div>-->
 
         <!--Pacote 3-->
+
+        <!--
         <div class="card">
           <div class="card-tag card-tag-top">
             <p>Promoção</p>
@@ -90,7 +100,7 @@ include("../dao/conexao.php");
             <p>R$ 5.500,00</p>
           </div>
 
-          <img class="card-image" src="https://images.unsplash.com/photo-1619083382085-9452906b7157?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGNhbGlmb3JuaWF8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" alt="California">
+        <img class="card-image" src="https://images.unsplash.com/photo-1619083382085-9452906b7157?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fGNhbGlmb3JuaWF8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" alt="California">
           <div class="card-content">
             <h1>California - 5 noites Hotel Premium</h1>
             <ul>
@@ -100,8 +110,10 @@ include("../dao/conexao.php");
             </ul>
           </div>
         </div>
-
+      -->
         <!--Pacote 4-->
+
+        <!--
         <div class="card">
           <div class="card-tag card-tag-top">
             <p>Promoção</p>
@@ -122,8 +134,10 @@ include("../dao/conexao.php");
           </div>
         </div>
 
-
+      -->
         <!--Pacote 5-->
+
+        <!--
         <div class="card">
           <div class="card-tag card-tag-top">
             <p>Promoção</p>
@@ -143,9 +157,10 @@ include("../dao/conexao.php");
             </ul>
           </div>
         </div>
-
+      -->
 
         <!--Pacote 6-->
+        <!--
         <div class="card">
           <div class="card-tag card-tag-top">
             <p>Ultimas vagas!</p>
@@ -165,6 +180,8 @@ include("../dao/conexao.php");
             </ul>
           </div>
         </div>
+      -->
+        <!--Fechar Seção-->
       </div>
     </section>
 
