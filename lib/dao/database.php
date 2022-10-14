@@ -3,8 +3,9 @@ class Database {
         $con = "SELECT * FROM cliente WHERE cli_email = ".$cliente->getCli_email().";";
     }
 
-    function cadastrarCliente($cliente) {
+    function cadastrarCliente($cliente, $result) {
         $con = "INSERT INTO cliente(cli_id, cli_nome, cli_email, cli_sexo) VALUES ('', ".$cliente->getCli_nome().", ".$cliente->getCli_email().", ".$cliente->getCli_sexo().");";
+        mysqli_query()
     }
 
     function pegarHotéis() {

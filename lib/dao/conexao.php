@@ -9,6 +9,6 @@
     if($mysqli->connect_errno){
         echo "Falha na Conexão: ".$mysqli->connect_error;
     } else {
-        echo "Conectou";
+        return $mysqli;
     }
 ?>

@@ -1,3 +1,5 @@
+<?php
+
 class Cliente{
     private $cli_id;
     private $cli_nome;
@@ -10,15 +12,15 @@ class Cliente{
     }
 
     function getCli_nome() {
-        return $this->cli_id;
+        return $this->cli_nome;
     }
     
     function getCli_email() {
-        return $this->cli_id;
+        return $this->cli_email;
     }
 
     function getCli_sexo() {
-        return $this->cli_id;
+        return $this->cli_sexo;
     }
 
     function getCli_image() {
@@ -46,3 +48,5 @@ class Cliente{
     }
 
 }
+
+?>

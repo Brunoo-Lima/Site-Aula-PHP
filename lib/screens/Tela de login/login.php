@@ -1,3 +1,6 @@
+<?php
+$mysqli = include("../../dao/conexao.php");
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -15,19 +18,19 @@
             <h1>BeM Viagens</h1>
             <img src="imagens/viagem.svg"  class="viagem" alt="viagem">
         </div>
-        <form method="" action="">
+        <form method="POST" action="./processo.php">
         <div class="right">
             <div class="card-login">
                 <h1>Login</h1>
                 
                     <div class="usuario-texto">
                     <label for="usuario">Usuário</label>
-                    <input type="text" name="usuario" id="nome" placeholder="Usuário">
+                    <input type="text" name="usuario" id="usuario" placeholder="Usuário">
                 </div>
 
                 <div class="usuario-texto">
                     <label for="senha">Senha</label>
-                    <input type="password" name="usuario" id="nome" placeholder="Senha">
+                    <input type="password" name="senha" id="senha" placeholder="Senha">
                 </div>
                     <input type="submit" class="btn-login" value="Entrar">
                 <div class="cadastro">
