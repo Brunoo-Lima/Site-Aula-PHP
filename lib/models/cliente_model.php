@@ -47,6 +47,14 @@ class Cliente{
         $this->cli_image = $image;
     }
 
+    function fromMap($obj) {
+        $cliente = new Cliente();
+        $cliente->setCli_id($obj->cli_id);
+        $cliente->setCli_nome($obj->cli_nome);
+        $cliente->setCli_image($obj->cli_image);
+        return $cliente;
+    }
+
 }
 
 ?>

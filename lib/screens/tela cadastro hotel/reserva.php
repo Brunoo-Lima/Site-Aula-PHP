@@ -1,3 +1,8 @@
+<?php
+session_start();
+$mysqli = include("../dao/conexao.php");
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
