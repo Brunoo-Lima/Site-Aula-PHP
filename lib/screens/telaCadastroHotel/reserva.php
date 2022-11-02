@@ -1,7 +1,11 @@
 <?php
 session_start();
-$mysqli = include("../dao/conexao.php");
-
+$mysqli = include("../../dao/conexao.php");
+$hot_id = $_GET["hotel"];
+$result = mysqli_query($mysqli, "SELECT * FROM hotel WHERE hot_id = ".$hot_id);
+while($obj = $result->fetch_object()) {
+  $hot = $obj;
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -29,19 +33,28 @@ $mysqli = include("../dao/conexao.php");
     <main>
       <section class="imagem">
         <figure>
-          <img class="1"src="https://images.unsplash.com/photo-1543489822-c49534f3271f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80" alt="imagem Hotel">
+        <?php
+          echo "<img class='1' src='".$hot->hot_image."' alt='imagem Hotel'>";
+        ?>
+        
         </figure>
       </section>
 
       <section class="conteudo">
         <div class="titulo">
-          <h1>Hotel Premium</h1>
+          <h1><?php
+            echo $hot->hot_nome;
+          ?></h1>
         </div>
         
         <div class="preco">
           <h4>Preço da Reserva</h4>
-          <p>R$ 8.500,00</p>
-          <input type="submit" value="Reservar">
+          <p><?php
+            echo "R$ ".$hot->hot_preco;
+          ?></p>
+          <?php
+            echo "<a href='processo.php?hotel=".$hot_id."'>><input type="submit" value="Reservar"></a>";
+          ?>
         </div>
         
         <div class="textos">

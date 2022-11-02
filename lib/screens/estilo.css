@@ -22,6 +22,10 @@
     box-sizing: border-box;
 }
 
+.space {
+    margin-left: 20%;
+}
+
 body {
     font-family: var(--fonte01);
     background-color: var(--cor0);

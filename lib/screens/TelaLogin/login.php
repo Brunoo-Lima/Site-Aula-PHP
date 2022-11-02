@@ -1,6 +1,3 @@
-<?php
-$mysqli = include("../../dao/conexao.php");
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -22,7 +19,6 @@ $mysqli = include("../../dao/conexao.php");
         <div class="right">
             <div class="card-login">
                 <h1>Login</h1>
-                
                     <div class="usuario-texto">
                     <label for="usuario">Usuário</label>
                     <input type="text" name="usuario" id="usuario" placeholder="Usuário">

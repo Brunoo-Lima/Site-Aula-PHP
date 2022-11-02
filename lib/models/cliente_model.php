@@ -1,10 +1,9 @@
 <?php
 
-class Cliente{
+class ClienteModel{
     private $cli_id;
     private $cli_nome;
     private $cli_email;
-    private $cli_sexo;
     private $cli_image;
 
     function getCli_id() {
@@ -17,10 +16,6 @@ class Cliente{
     
     function getCli_email() {
         return $this->cli_email;
-    }
-
-    function getCli_sexo() {
-        return $this->cli_sexo;
     }
 
     function getCli_image() {
@@ -39,22 +34,17 @@ class Cliente{
         $this->cli_email = $cli_email;
     }
 
-    function setCli_sexo($cli_sexo) {
-        $this->cli_sexo = $cli_sexo;
-    }
-
     function setCli_image($image) {
         $this->cli_image = $image;
     }
 
-    function fromMap($obj) {
-        $cliente = new Cliente();
-        $cliente->setCli_id($obj->cli_id);
-        $cliente->setCli_nome($obj->cli_nome);
-        $cliente->setCli_image($obj->cli_image);
+    function fromJson($arr) {
+        $cliente = new ClienteModel();
+        $cliente->setCli_id($arr['cli_id']);
+        $cliente->setCli_nome($arr['cli_nome']);
+        $cliente->setCli_email($arr['cli_email']);
+        $cliente->setCli_image($arr['cli_image']);
         return $cliente;
     }
-
 }
-
 ?>
