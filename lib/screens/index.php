@@ -64,7 +64,7 @@ $database = new Database(include("../dao/conexao.php"));
         <li><a href="#">Home</a></li>
         <li><a href="#Conheça nossos Pacotes">Pacotes</a></li>
         <li><a href="#Serviços">Serviços</a></li>
-        <li><a href="telaCadastroHotel/cadHotel.html" target="_blank">Hoteis</a></li>
+        <li><a href="./telaSuaReserva/reserva.html" target="_blank">Reservas</a></li>
         <?php
         if(empty($_SESSION['nome'])) {
           echo '<li><a href="telaCadastro/cadastro.html" class="right" target="_blank">Cadastrar</a></li>';
