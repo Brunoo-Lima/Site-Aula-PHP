@@ -64,13 +64,13 @@ $database = new Database(include("../dao/conexao.php"));
         <li><a href="#">Home</a></li>
         <li><a href="#Conheça nossos Pacotes">Pacotes</a></li>
         <li><a href="#Serviços">Serviços</a></li>
-        <li><a href="./telaSuaReserva/reserva.html" target="_blank">Reservas</a></li>
         <?php
         if(empty($_SESSION['nome'])) {
           echo '<li><a href="telaCadastro/cadastro.html" class="right" target="_blank">Cadastrar</a></li>';
           echo '<li><a href="TelaLogin/login.php" class="right" target="_blank">Login</a></li>';
           echo '</ul>';
         } else {
+          echo '<li><a href="./telaSuaReserva/reserva.php" target="_blank">Reservas</a></li>';
           echo "</ul>";
           echo '<div class="dropdown" style="float:left;">
             <button class="dropbtn"><div class="space"><img width="50" height="50" src="../images/profile.png"> <br>'.$_SESSION['nome'].'</button>

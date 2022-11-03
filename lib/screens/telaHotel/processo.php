@@ -9,6 +9,6 @@
     $dataSaida = $_POST['dataSaida'];
     
     
-    $database->cadastrarReserva($clienteId, $hotelId, $dataEntrada, $dataSaida);
-    //header("location: reserva.php?hotel_id=".$hotelId."&reserva=1");
+    $resp = $database->cadastrarReserva($clienteId, $hotelId, $dataEntrada, $dataSaida);
+    header("location: reserva.php?hotel_id=".$hotelId."&reserva=1");
 ?>
