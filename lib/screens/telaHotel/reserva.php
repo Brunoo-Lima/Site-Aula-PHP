@@ -25,6 +25,62 @@ echo $fmt->formatCurrency(1234567.891234567890000, "RUR")."\n";*/
     <script src="https://unpkg.com/feather-icons"></script>
     <link type="image/png" sizes="16x16" rel="icon" href="../../imagens/icone1.png">
     <link rel="stylesheet" href="stylehotel.css">
+    <style>
+      input[type="date"], textarea {
+        background-color : #d1d1d1; 
+      }
+      input[type="date"]:hover {
+        background-color : grey; 
+      }
+      .text {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        padding: 10px;
+      }
+      .preco {
+        float: right;
+        padding: 10px;
+        justify: space-between;
+        font-weight: bold;
+        border: solid 1px grey;
+        font-size: 15pt;
+        border-radius: 5px;
+        box-shadow: -8px 8px 8px -2px grey;
+      }
+      .texto {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+      g {
+        color: white;
+        padding: 3px 8px 3px 8px;
+        border-radius: 15px;
+        font-size: 18pt;
+        background-color: lime;
+      }
+      .preco h4 {
+        text-align: center;
+      }
+      input[type = "submit"] {
+        width: 100%;
+      }
+      
+      button {
+        margin-top: 10px;
+        padding: 10px 40px;
+        border-radius: 20px;
+        border: none;
+        width: 100%;
+        background-color: #ffa500;
+        font-weight: bold;
+        font-family: 'Roboto Condensed', sans-serif;
+        letter-spacing: 2px;
+      }
+    </style>
 </head>
 <body>
     <header>
@@ -60,32 +116,42 @@ echo $fmt->formatCurrency(1234567.891234567890000, "RUR")."\n";*/
         </div>
         
         <div class="preco">
-          <h4>Preço da Reserva</h4>
+        <form action="processo.php" method="POST">  
+        <div class="text">
+            <h4>Preço da Reserva </h4>
+            <?php
+              echo "<g> R$ ".$hotel['hot_preco']."</g>";
+            ?>  
+          </div>
+          <div class="texto">
+            <label for="tDate">Data de entrada: </label>
+            <input class="dataEntrada" type="date" required="required" name="dataEntrada" id="dataEntrada">
+          </div>
+          <div class="texto">
+            <label for="tDate">Data de saída: </label>
+            <input class="dataSaida" required="required" type="date" name="dataSaida" id="dataSaida">
+          
+          </div>
           <?php
-            echo "<p>R$ ".$hotel['hot_preco']."</p>";
-          ?>
-          <input type="submit" value="Reservar" onclick="reservar()">
-          <?php
+            echo "<input name='hotelId' id='hotelId' value='".$hotel['hot_id']."' style='display:none;'>";
             if(empty($_SESSION['nome'])) {
-              echo "<script>
-                function reservar() {
-                  alert('Por favor, faça o login para realizar a reserva';
-                }
-              </script>";
+              echo '</form>';
+              echo '<input type="submit" onclick="isNotLogged()" value="Reservar">';
             } else {
-              echo "<script>
-                function reservar() {
-                  window.location.replace('processo.php?hotel_id=".$hotel['hot_id']."');
-                }
-              </script>";
+              echo "<input name='clienteId' id='clienteId' value='".$_SESSION['id']."' style='display:none;'>";
+              echo '<input type="submit" value="Reservar">';
+              echo "</form>";
             }
-          ?>
+          ?>  
         </div>
-        
         <div class="textos">
           <p></p>
            <?php
-            echo "<h3>".$hotel['hot_nota']."/10 - Excepcional</h3>";
+           if(floatval($hotel['hot_nota']) >= 9.5) $quality = "Excepcional";
+           if(floatval($hotel['hot_nota']) >= 7 && floatval($hotel['hot_nota']) < 9.5) $quality = "Boa";
+           if(floatval($hotel['hot_nota']) >= 5 && floatval($hotel['hot_nota']) < 7) $quality = "Razoável";
+           if(floatval($hotel['hot_nota']) < 5) $quality = "Abaixo da média";
+            echo "<h3>".$hotel['hot_nota']."/10 - ".$quality."</h3>";
            ?>   
         </div>
 
@@ -125,6 +191,25 @@ echo $fmt->formatCurrency(1234567.891234567890000, "RUR")."\n";*/
     
     <script>
       feather.replace();
+      function isNotLogged() {
+        alert("Por favor, para efetuar a reserva, faça o login.");
+      }
     </script>
+    <?php
+    if(!empty($_GET['reserva'])) {
+      if($_GET['reserva'] == "1") {
+        echo "<script>
+        (function() {
+          alert('Reserva efetuada com sucesso');
+        }());
+      </script>";
+      } else {
+        echo "<script>
+        (function() {
+          alert('Erro ao efetuar reserva');
+        }()); </script>";
+      }
+    }
+    ?>
 </body>
 </html>

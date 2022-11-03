@@ -21,7 +21,7 @@
       </header>
 
     <main>
-        <form action="action.php" method="get">
+        <form action="processo.php" method="POST">
             <div class="card-cadastro">
                 <h1>Preencha o formulário e finalize o cadastro!</h1>
                 <div class="dados">
@@ -39,9 +39,9 @@
 
                             <fieldset id="sexo">
                                 <legend>Sexo</legend>
-                                <input type="radio" name="tRadio" id="masc" checked>
+                                <input type="radio" name="tRadio" id="masc" value="masc" checked>
                                 <label for="masc">Masculino</label>
-                                <input type="radio" name="tRadio" id="fem">
+                                <input type="radio" name="tRadio" value='fem' id="fem">
                                 <label for="fem">Feminino</label>
                             </fieldset>
 
@@ -129,7 +129,7 @@
                             <p>Todos os campos foram preenchidos? Finalize seu cadastro!</p>
                         </div>
                         <div class="texto">
-                            <input class="btn" type="button" value="Cadastrar" >
+                            <input class="btn" type="submit" value="Cadastrar" >
                         </div>
                 </div>
             </div>
