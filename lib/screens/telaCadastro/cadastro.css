@@ -24,7 +24,6 @@
 
 body {
     background-color: var(--cor4);
-    font-size: 3vh;
 }
 
 
@@ -104,7 +103,7 @@ main {
 }
 
 .card-cadastro h1 {
-    font-size: 4vh;
+    font-size: 2rem;
 }
 
 .texto {
@@ -131,7 +130,7 @@ fieldset#sexo {
 
 legend {
     font-weight: bold;
-    font-size: 3.5vh;
+    font-size: 2rem;
     color: rgba(255, 255, 255, 0.637);
 }
 
@@ -196,7 +195,7 @@ option {
 #txt {
     padding: 10px;
     margin-top: 10px;
-    font-size: 3vh;
+    font-size: 1rem;
 }
 
 input.btn {
@@ -210,7 +209,7 @@ input.btn {
     font-weight: bold;
     cursor: pointer;
     letter-spacing: 2px;
-    font-size: 2vh;
+    font-size: 1rem;
 }
 
 input.btn:hover {
@@ -220,6 +219,6 @@ input.btn:hover {
 footer {
     text-align: center;
     color: var(--cor0);
-    background-color: var(--cor1);
-    padding: 10px;
+    background-color: var(--cor4);
+    padding: 20px;
 }
