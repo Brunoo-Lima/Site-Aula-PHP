@@ -1,4 +1,15 @@
 <?php
+/*  $host = "localhost";
+    $usuario = "root";
+    $bd = "hoteldatabase";
+    $senha = "";
+    
+    $mysqli = new mysqli($host, $usuario, $senha, $bd);
+    
+    
+    if($this->mysqli->connect_errno){
+        echo "Falha na Conexão: ".$this->mysqli->connect_error;
+    }
 include("C:\\xampp\htdocs\Site-Aula-PHP-main/lib/models/cliente_model.php");
 class Database {
     public $mysqli;
@@ -17,7 +28,7 @@ class Database {
         }
         $resultado = $resp[0];        
         $cliente = new ClienteModel();
-        $cliente = $cliente->fromJson($resultado);
+        $cliente = $cliente->fromMap($resultado);
         return $cliente;
     }
 
@@ -64,5 +75,5 @@ class Database {
         }
         return $resp;
     }
-}
+}*/
 ?>

@@ -1,7 +1,7 @@
 <?php
 session_start();
-include("../dao/database.php");
-$database = new Database(include("../dao/conexao.php"));
+include("../dao/hotel_dao.php");
+$hotelDao = new HotelDao(include("../dao/conexao.php"));
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -102,27 +102,27 @@ $database = new Database(include("../dao/conexao.php"));
         <!--Pacote 1-->
 
       <?php
-        $result = $database->pegarHoteis();
-        while($obj = $result->fetch_object()) {
-          echo '<a id="nomes-tela" href="./telaHotel/reserva.php?hotel_id='.$obj->hot_id.'">';
+        $listHotels = $hotelDao->pegarHoteis();
+        foreach($listHotels as $hotel){
+          echo '<a id="nomes-tela" href="./telaHotel/reserva.php?hotel_id='.$hotel->getHot_id().'">';
           echo "<div class='card'>";
           echo "<div class='card-tag card-tag-top'>";
           echo "<p>Promoção</p>";
           echo "</div>";
           echo "<div class='card-tag card-tag-bottom'>";
-          echo "<p>R$ ".$obj->hot_preco."</p>";
+          echo "<p>R$ ".$hotel->getHot_preco()."</p>";
           echo "</div>";
-          echo "<img class='card-image' src='".$obj->hot_image."' alt='Orlando'>";
+          echo "<img class='card-image' src='".$hotel->getHot_image()."' alt='Orlando'>";
           echo "<div class='card-content'>";
-          echo "<h1>".$obj->hot_nome."</h1>";
+          echo "<h1>".$hotel->getHot_nome()."</h1>";
           echo "<ul>";
-              if($obj->hot_cafe == 1) {
+              if($hotel->getHot_cafe() == 1) {
                 echo "<li><i data-feather='coffee'></i> Café da manhã incluso</li>";
               } 
-              if($obj->hot_wifi == 1) {
+              if($hotel->getHot_wifi() == 1) {
                 echo "<li><i data-feather='wifi'></i> Wi-fi</li>"; 
               }
-              if($obj->hot_pet == 1) {
+              if($hotel->getHot_pet() == 1) {
                 echo "<li><i data-feather='briefcase'></i> Pet friendly</li>";
               } 
           echo  "</ul>";

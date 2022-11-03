@@ -1,12 +1,11 @@
 <?php
 session_start();
-include("../../dao/database.php");
-$database = new Database(include("../../dao/conexao.php"));
-$hotel = $database->pegarHotelPorId($_GET['hotel_id']);
+include("../../dao/hotel_dao.php");
+$hotelDao = new HotelDao(include("../../dao/conexao.php"));
+$hotel = $hotelDao->pegarHotelPorId($_GET['hotel_id']);
 $json = $hotel['hot_comodidades'];
 $arr = json_decode($json);
 $comodidades = $arr->{'comodidades'};
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

@@ -1,6 +1,10 @@
 <?php
-include("conexao.php");
-class ReservaDao extends Conexao{
+class ReservaDao{
+  private $mysqli;
+  function __construct($mysqli)
+  {
+    $this->mysqli = $mysqli;  
+  }
   function cadastrarReserva($clienteID, $hotelID, $reservaDataEntrada, $reservaDataSaida) {
     $dataEntrada = strval(date('Y-m-d', strtotime($reservaDataEntrada)));
     $dataSaida = strval(date('Y-m-d', strtotime($reservaDataSaida)));
@@ -18,7 +22,13 @@ class ReservaDao extends Conexao{
       while($row = mysqli_fetch_assoc($response)){
           $resp[] = $row;
       }
-      return $resp;
+      $listReserva = array();
+      foreach($resp as $reserva) {
+        $reservaModel = new ReservaModel();
+        $reserva = $reservaModel->fromMap($reserva);
+        $listReserva[] = $reserva;
+      }
+      return $listReserva;
   }
 }
 

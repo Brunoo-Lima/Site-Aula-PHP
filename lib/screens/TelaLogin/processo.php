@@ -1,14 +1,14 @@
 <?php
 session_start();
-include("../../dao/database.php");
-$database = new Database(include("../../dao/conexao.php"));
+include("../../dao/cliente_dao.php");
+$clienteDao = new ClienteDao(include("../../dao/conexao.php"));
 
 $usuario = $_POST['usuario'];
 $senha = $_POST['senha'];
 echo $usuario;
 echo $senha;
 
-    $cliente = $database->pegarDadosCliente($usuario, $senha);
+    $cliente = $clienteDao->pegarDadosCliente($usuario, $senha);
 
     $_SESSION['nome'] = $cliente->getCli_nome();
     $_SESSION['email'] = $cliente->getCli_email();

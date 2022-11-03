@@ -1,8 +1,11 @@
 <?php
     session_start();
-    include("../../dao/database.php");
-    $database = new Database(include("../../dao/conexao.php"));
-    $reservas = $database->pegarReservas($_SESSION['id']);
+    include("../../dao/reserva_dao.php");
+    include("../../dao/hotel_dao.php");
+    include("../../models/reserva_model.php");
+    $reservaDao = new ReservaDao(include("../../dao/conexao.php"));
+    $hotelDao = new HotelDao(include("../../dao/conexao.php"));
+    $listReservas = $reservaDao->pegarReservas($_SESSION['id']);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -80,12 +83,12 @@
 
         <section class="reserva">
             <?php
-                foreach($reservas as $reserva) {
-                    $hotel = $database->pegarHotelPorId($reserva['hot_id']);
+                foreach($listReservas as $reserva) {
+                    $hotel = $hotelDao->pegarHotelPorId($reserva->getHot_id());
                     $status = '';
-                    if(date('Y-m-d') > date('Y-m-d', strtotime($reserva['res_data_saida']))) $status = "Finalizado";
-                    if(date('Y-m-d') <= date('Y-m-d', strtotime($reserva['res_data_saida'])) and date('Y-m-d') >= date('Y-m-d', strtotime($reserva['res_data_entrada']))) $status = "Em andamento";
-                    if(date('Y-m-d') < date('Y-m-d', strtotime($reserva['res_data_entrada']))) $status = "Pendente"; 
+                    if(date('Y-m-d') > date('Y-m-d', strtotime($reserva->getRes_data_saida()))) $status = "Finalizado";
+                    if(date('Y-m-d') <= date('Y-m-d', strtotime($reserva->getRes_data_saida())) and date('Y-m-d') >= date('Y-m-d', strtotime($reserva->getRes_data_entrada()))) $status = "Em andamento";
+                    if(date('Y-m-d') < date('Y-m-d', strtotime($reserva->getRes_data_entrada()))) $status = "Pendente"; 
                     echo '
                         <div class="pacotes-reserva">
                             <img src="'.$hotel['hot_image'].'" alt="">
@@ -94,7 +97,7 @@
                                 <p>R$ '.$hotel['hot_preco'].'</p>
                                 <div class="status-reserva">
                                 <h4>Status da Reserva</h4>
-                                <p>Data: '.date('d/m/Y', strtotime($reserva['res_data_entrada'])).'</p>
+                                <p>Data: '.date('d/m/Y', strtotime($reserva->getRes_data_entrada())).'</p>
                                 <p class="status">'.$status.'</p>
                                 </div>
                             </div>

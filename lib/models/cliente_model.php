@@ -38,7 +38,7 @@ class ClienteModel{
         $this->cli_image = $image;
     }
 
-    function fromJson($arr) {
+    function fromMap($arr) {
         $cliente = new ClienteModel();
         $cliente->setCli_id($arr['cli_id']);
         $cliente->setCli_nome($arr['cli_nome']);

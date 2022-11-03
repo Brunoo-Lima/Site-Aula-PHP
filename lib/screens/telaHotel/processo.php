@@ -1,6 +1,6 @@
 <?php
-    include("../../dao/database.php");
-    $database = new Database(include("../../dao/conexao.php"));
+    include("../../dao/reserva_dao.php");
+    $reservaDao = new ReservaDao(include("../../dao/conexao.php"));
     session_start();
     
     $clienteId = $_POST['clienteId'];
@@ -9,6 +9,6 @@
     $dataSaida = $_POST['dataSaida'];
     
     
-    $resp = $database->cadastrarReserva($clienteId, $hotelId, $dataEntrada, $dataSaida);
+    $reservaDao->cadastrarReserva($clienteId, $hotelId, $dataEntrada, $dataSaida);
     header("location: reserva.php?hotel_id=".$hotelId."&reserva=1");
 ?>

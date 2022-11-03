@@ -1,4 +1,5 @@
-class Hotel{
+<?php
+class HotelModel{
     private $hot_id;
     private $hot_nome;
     private $hot_logradouro;
@@ -120,3 +121,5 @@ class Hotel{
     }
 
 }
+
+?>

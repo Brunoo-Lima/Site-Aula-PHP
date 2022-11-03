@@ -1,4 +1,6 @@
-class Reserva{
+<?php
+
+class ReservaModel{
     private $cli_id;
     private $hot_id;
     private $res_id;
@@ -16,7 +18,7 @@ class Reserva{
     }
     
     function getRes_data_entrada() {
-        return $this->$res_data_entrada;
+        return $this->res_data_entrada;
     }
 
     function getRes_data_saida() {
@@ -47,5 +49,14 @@ class Reserva{
     function setRes_data_saida($data_saida) {
         $this->res_data_saida = $data_saida;
     }
-
+    function fromMap($arr) {
+        $reserva = new ReservaModel();
+        $reserva->setCli_id($arr['cli_id']);
+        $reserva->setHot_id($arr['hot_id']);
+        $reserva->setRes_data_entrada($arr['res_data_entrada']);
+        $reserva->setRes_data_saida($arr['res_data_saida']);
+        return $reserva;
+    }
 }
+
+?>

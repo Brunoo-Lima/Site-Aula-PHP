@@ -1,6 +1,10 @@
 <?php
-include("conexao.php");
-class ClienteDao extends Conexao {
+class ClienteDao {
+  private $mysqli;
+  function __construct($mysqli)
+  {
+    $this->mysqli = $mysqli;  
+  }
   function pegarDadosCliente($clienteUsuario, $clienteSenha) {
     $query = "SELECT * FROM cliente WHERE cli_email = '".$clienteUsuario."' AND cli_senha = ".$clienteSenha.";";
     $response = mysqli_query($this->mysqli, $query);
@@ -13,7 +17,7 @@ class ClienteDao extends Conexao {
     }
     $resultado = $resp[0];        
     $cliente = new ClienteModel();
-    $cliente = $cliente->fromJson($resultado);
+    $cliente = $cliente->fromMap($resultado);
     return $cliente;
   }
 
