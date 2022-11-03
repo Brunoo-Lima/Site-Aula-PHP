@@ -2,12 +2,7 @@
 session_start();
 include("../../dao/database.php");
 $database = new Database(include("../../dao/conexao.php"));
-$resultado = $database->pegarHotelPorId($_GET['hotel_id']);
-$resp = array();
-while($row = mysqli_fetch_assoc($resultado)){
-    $resp[] = $row;
-}
-$hotel = $resp[0];
+$hotel = $database->pegarHotelPorId($_GET['hotel_id']);
 $json = $hotel['hot_comodidades'];
 $arr = json_decode($json);
 $comodidades = $arr->{'comodidades'};
