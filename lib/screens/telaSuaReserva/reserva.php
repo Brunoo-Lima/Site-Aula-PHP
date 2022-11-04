@@ -91,10 +91,10 @@
                     if(date('Y-m-d') < date('Y-m-d', strtotime($reserva->getRes_data_entrada()))) $status = "Pendente"; 
                     echo '
                         <div class="pacotes-reserva">
-                            <img src="'.$hotel['hot_image'].'" alt="">
+                            <img src="'.$hotel->getHot_image().'" alt="">
                             <div class="card">
-                                <h3>'.$hotel['hot_nome'].'</h3>
-                                <p>R$ '.$hotel['hot_preco'].'</p>
+                                <h3>'.$hotel->getHot_nome().'</h3>
+                                <p>R$ '.$hotel->getHot_preco().'</p>
                                 <div class="status-reserva">
                                 <h4>Status da Reserva</h4>
                                 <p>Data: '.date('d/m/Y', strtotime($reserva->getRes_data_entrada())).'</p>

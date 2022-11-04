@@ -1,4 +1,5 @@
 <?php
+include("C:/xampp/htdocs/Site-Aula-PHP/lib/models/hotel_model.php");
 class HotelDao {
   private $mysqli;
   function __construct($mysqli)
@@ -15,8 +16,9 @@ class HotelDao {
     while($row = mysqli_fetch_assoc($response)){
         $resp[] = $row;
     }
-    $resultado = $resp[0]; 
-    return $resultado; 
+    $hotelModel = new HotelModel();
+    $hotel = $hotelModel->fromMap($resp[0]); 
+    return $hotel; 
   }
 
   function pegarHoteis() {
@@ -30,10 +32,10 @@ class HotelDao {
           $resp[] = $row;
       }
       $listHotels = array();
-      foreach($resp as $reserva) {
+      foreach($resp as $hot) {
         $hotelModel = new HotelModel();
-        $hotel = $hotelModel->fromMap($reserva);
-        $listHotels[] = $reserva;
+        $hotel = $hotelModel->fromMap($hot);
+        $listHotels[] = $hotel;
       }
       return $listHotels;
   }

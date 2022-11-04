@@ -13,6 +13,9 @@ class HotelModel{
     private $hot_pet;
     private $hot_preco;
     private $hot_image;
+    private $hot_nota;
+    private $hot_descricao;
+    private $hot_comodidades;
 
     //Getters
     function getHot_id() {
@@ -67,6 +70,18 @@ class HotelModel{
         return $this->hot_image;
     }
 
+    function getHot_nota() {
+        return $this->hot_nota;
+    }
+    
+    function getHot_descricao() {
+        return $this->hot_descricao;
+    }
+
+    function getHot_comodidades() {
+        return $this->hot_comodidades;
+    }
+
     //Setters
     function setHot_id($hot_id) {
         $this->hot_id = $hot_id;
@@ -116,10 +131,43 @@ class HotelModel{
         $this->hot_uf = $hot_uf;
     }
 
-    function setHot_image($image){
+    function setHot_image($image) {
         $this->hot_image = $image;
     }
 
+    function setHot_nota($nota){
+        $this->hot_nota = $nota;
+    }
+    
+    function setHot_descricao($descricao){
+        $this->hot_descricao = $descricao;
+    }
+
+    function setHot_comodidades($comodidades){
+        $arr = json_decode($comodidades);
+        $this->hot_comodidades = $arr->{'comodidades'};
+    }
+
+    function fromMap($arr) {
+        $hotel = new HotelModel();
+        $hotel->setHot_id($arr['hot_id']);
+        $hotel->setHot_nome($arr['hot_nome']);
+        $hotel->setHot_logradouro($arr['hot_logradouro']);
+        $hotel->setHot_numero($arr['hot_numero']);
+        $hotel->setHot_bairro($arr['hot_bairro']);
+        $hotel->setHot_cep($arr['hot_cep']);
+        $hotel->setHot_cidade($arr['hot_cidade']);
+        $hotel->setHot_uf($arr['hot_uf']);
+        $hotel->setHot_image($arr['hot_image']);
+        $hotel->setHot_wifi($arr['hot_wifi']);
+        $hotel->setHot_cafe($arr['hot_cafe']);
+        $hotel->setHot_pet($arr['hot_pet']);
+        $hotel->setHot_preco($arr['hot_preco']);
+        $hotel->setHot_nota($arr['hot_nota']);
+        $hotel->setHot_descricao($arr['hot_descricao']);
+        $hotel->setHot_comodidades($arr['hot_comodidades']);
+        return $hotel;
+    }
 }
 
 ?>

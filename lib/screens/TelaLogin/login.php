@@ -1,3 +1,10 @@
+<?php
+    if(!empty($_GET['auth'])) {
+        echo "<script>
+            (function (){alert('Usuário ou senha incorretos.');}())
+        </script>";
+    }
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

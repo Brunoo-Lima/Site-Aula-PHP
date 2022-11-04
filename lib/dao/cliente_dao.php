@@ -1,4 +1,5 @@
 <?php
+include("C:/xampp/htdocs/Site-Aula-PHP/lib/models/cliente_model.php");
 class ClienteDao {
   private $mysqli;
   function __construct($mysqli)
@@ -9,6 +10,7 @@ class ClienteDao {
     $query = "SELECT * FROM cliente WHERE cli_email = '".$clienteUsuario."' AND cli_senha = ".$clienteSenha.";";
     $response = mysqli_query($this->mysqli, $query);
     $resp = array();
+    
     if($response == FALSE) { 
         die(mysqli_error($this->mysqli));
      }
@@ -16,8 +18,8 @@ class ClienteDao {
         $resp[] = $row;
     }
     $resultado = $resp[0];        
-    $cliente = new ClienteModel();
-    $cliente = $cliente->fromMap($resultado);
+    $clienteModel = new ClienteModel();
+    $cliente = $clienteModel->fromMap($resultado);
     return $cliente;
   }
 

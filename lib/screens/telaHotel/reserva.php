@@ -3,9 +3,6 @@ session_start();
 include("../../dao/hotel_dao.php");
 $hotelDao = new HotelDao(include("../../dao/conexao.php"));
 $hotel = $hotelDao->pegarHotelPorId($_GET['hotel_id']);
-$json = $hotel['hot_comodidades'];
-$arr = json_decode($json);
-$comodidades = $arr->{'comodidades'};
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -110,7 +107,7 @@ $comodidades = $arr->{'comodidades'};
       <section class="imagem">
         <figure>
           <?php
-            echo "<img class='img1'src='".$hotel['hot_image']."' alt='imagem Hotel'>";
+            echo "<img class='img1'src='".$hotel->getHot_image()."' alt='imagem Hotel'>";
           ?>
         </figure>
       </section>
@@ -118,7 +115,7 @@ $comodidades = $arr->{'comodidades'};
       <section class="conteudo">
         <div class="titulo">
           <?php
-            echo "<h1>".$hotel['hot_nome']."</h1>";
+            echo "<h1>".$hotel->getHot_nome()."</h1>";
           ?>
         </div>
         
@@ -127,7 +124,7 @@ $comodidades = $arr->{'comodidades'};
         <div class="text">
             <h4>Preço da Reserva </h4>
             <?php
-              echo "<g> R$ ".$hotel['hot_preco']."</g>";
+              echo "<g> R$ ".$hotel->getHot_preco()."</g>";
             ?>  
           </div>
           <div class="texto">
@@ -140,7 +137,7 @@ $comodidades = $arr->{'comodidades'};
           
           </div>
           <?php
-            echo "<input name='hotelId' id='hotelId' value='".$hotel['hot_id']."' style='display:none;'>";
+            echo "<input name='hotelId' id='hotelId' value='".$hotel->getHot_id()."' style='display:none;'>";
             if(empty($_SESSION['nome'])) {
               echo '</form>';
               echo '<input type="submit" onclick="isNotLogged()" value="Reservar">';
@@ -154,11 +151,11 @@ $comodidades = $arr->{'comodidades'};
         <div class="textos">
           <p></p>
            <?php
-           if(floatval($hotel['hot_nota']) >= 9.5) $quality = "Excepcional";
-           if(floatval($hotel['hot_nota']) >= 7 && floatval($hotel['hot_nota']) < 9.5) $quality = "Boa";
-           if(floatval($hotel['hot_nota']) >= 5 && floatval($hotel['hot_nota']) < 7) $quality = "Razoável";
-           if(floatval($hotel['hot_nota']) < 5) $quality = "Abaixo da média";
-            echo "<h3>".$hotel['hot_nota']."/10 - ".$quality."</h3>";
+           if(floatval($hotel->getHot_nota()) >= 9.5) $quality = "Excepcional";
+           if(floatval($hotel->getHot_nota()) >= 7 && floatval($hotel->getHot_nota()) < 9.5) $quality = "Boa";
+           if(floatval($hotel->getHot_nota()) >= 5 && floatval($hotel->getHot_nota()) < 7) $quality = "Razoável";
+           if(floatval($hotel->getHot_nota()) < 5) $quality = "Abaixo da média";
+            echo "<h3>".$hotel->getHot_nota()."/10 - ".$quality."</h3>";
            ?>   
         </div>
 
@@ -166,13 +163,13 @@ $comodidades = $arr->{'comodidades'};
           <h3>Destaques da Acomodação</h3>
           <ul>
             <?php
-            if($hotel['hot_cafe'] == 1) {
+            if($hotel->getHot_cafe() == 1) {
               echo "<li><i data-feather='coffee'></i> Café da manhã incluso</li>";
             } 
-            if($hotel['hot_wifi'] == 1) {
+            if($hotel->getHot_wifi() == 1) {
               echo "<li><i data-feather='wifi'></i> Wi-fi</li>"; 
             }
-            if($hotel['hot_pet'] == 1) {
+            if($hotel->getHot_pet() == 1) {
               echo "<li><i data-feather='briefcase'></i> Pet friendly</li>";
             } 
             ?>
@@ -183,7 +180,7 @@ $comodidades = $arr->{'comodidades'};
           <h4>Principais comodidades</h4>
           <ul>
             <?php
-              foreach ($comodidades as $comodidade) {
+              foreach ($hotel->getHot_comodidades() as $comodidade) {
                 echo "<li>".$comodidade."</li>";
               }
             ?>
