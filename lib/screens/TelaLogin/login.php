@@ -38,7 +38,7 @@
                     <input type="submit" class="btn-login" value="Entrar">
                 <div class="cadastro">
                 
-                    <p>Ainda não é cadastrado? <a href="../tela de cadastro/cadastro.html">Clique Aqui</a> e se cadastre!</p>
+                    <p>Ainda não é cadastrado? <a href="../telaCadastro/cadastro.html">Clique Aqui</a> e se cadastre!</p>
                 </div>
                 
             </div>

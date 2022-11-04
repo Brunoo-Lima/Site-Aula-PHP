@@ -23,8 +23,8 @@ class ClienteDao {
     return $cliente;
   }
 
-  function cadastrarCliente($clienteNome, $clienteEmail, $clienteSenha, $clienteSexo) {
-      $query = "INSERT INTO cliente(cli_nome, cli_email, cli_senha, cli_sexo) VALUES ('".$clienteNome."', '".$clienteEmail."', '".$clienteSenha."', '".$clienteSexo."');";
+  function cadastrarCliente($clienteNome, $clienteEmail, $clienteSenha) {
+      $query = "INSERT INTO cliente(cli_nome, cli_email, cli_senha) VALUES ('".$clienteNome."', '".$clienteEmail."', '".$clienteSenha."');";
       mysqli_query($this->mysqli, $query);
   }
 } 
