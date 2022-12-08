@@ -30,6 +30,7 @@ class ClienteDaoSql implements ClienteDao {
         }
         return false;
     }
+    
     public function update(Cliente $cliente){
         $sql = $this->pdo->prepare("UPDATE cliente SET cli_nome = :nome, cli_email = :email, cli_senha = :senha, cli_image = :imagem WHERE cli_id = :id");
         $sql->bindValue(':nome', $cliente->getCli_nome());

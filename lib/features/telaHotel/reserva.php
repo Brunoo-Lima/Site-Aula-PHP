@@ -33,7 +33,6 @@ $hotel = $hotelDao->findWhere($id);
       .preco {
         float: right;
         padding: 10px;
-        justify: space-between;
         font-weight: bold;
         border: solid 1px grey;
         font-size: 15pt;
