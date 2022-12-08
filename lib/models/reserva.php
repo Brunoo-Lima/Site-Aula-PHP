@@ -1,6 +1,6 @@
 <?php
 
-class ReservaModel{
+class Reserva{
     private $cli_id;
     private $hot_id;
     private $res_id;
@@ -50,7 +50,7 @@ class ReservaModel{
         $this->res_data_saida = $data_saida;
     }
     function fromMap($arr) {
-        $reserva = new ReservaModel();
+        $reserva = new Reserva();
         $reserva->setCli_id($arr['cli_id']);
         $reserva->setHot_id($arr['hot_id']);
         $reserva->setRes_data_entrada($arr['res_data_entrada']);
@@ -59,4 +59,8 @@ class ReservaModel{
     }
 }
 
+interface ReservaDao {
+    public function findAllWhere($id);
+    public function create(Reserva $reserva);
+}
 ?>

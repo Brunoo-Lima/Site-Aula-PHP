@@ -1,8 +1,10 @@
 <?php
 session_start();
-include("../../dao/hotel_dao.php");
-$hotelDao = new HotelDao(include("../../dao/conexao.php"));
-$hotel = $hotelDao->pegarHotelPorId($_GET['hotel_id']);
+require "../../conexao.php";
+require "../../dao/hotel_dao.php";
+$hotelDao = new HotelDaoSql($pdo);
+$id = $_GET['hotel_id'];
+$hotel = $hotelDao->findWhere($id);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

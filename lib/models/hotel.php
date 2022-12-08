@@ -1,5 +1,5 @@
 <?php
-class HotelModel{
+class Hotel{
     private $hot_id;
     private $hot_nome;
     private $hot_logradouro;
@@ -144,12 +144,11 @@ class HotelModel{
     }
 
     function setHot_comodidades($comodidades){
-        $arr = json_decode($comodidades);
-        $this->hot_comodidades = $arr->{'comodidades'};
+        $this->hot_comodidades = $comodidades;
     }
 
     function fromMap($arr) {
-        $hotel = new HotelModel();
+        $hotel = new Hotel();
         $hotel->setHot_id($arr['hot_id']);
         $hotel->setHot_nome($arr['hot_nome']);
         $hotel->setHot_logradouro($arr['hot_logradouro']);
@@ -165,9 +164,13 @@ class HotelModel{
         $hotel->setHot_preco($arr['hot_preco']);
         $hotel->setHot_nota($arr['hot_nota']);
         $hotel->setHot_descricao($arr['hot_descricao']);
-        $hotel->setHot_comodidades($arr['hot_comodidades']);
+        $hotel->setHot_comodidades(json_decode($arr['hot_comodidades'])->comodidades);
         return $hotel;
     }
 }
 
+interface HotelDao {
+    public function findAll();
+    public function findWhere($id);
+}
 ?>

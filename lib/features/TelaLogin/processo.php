@@ -1,14 +1,15 @@
 <?php
 session_start();
-include("../../dao/cliente_dao.php");
-$clienteDao = new ClienteDao(include("../../dao/conexao.php"));
+require '../../conexao.php';
+require '../../dao/cliente_dao.php';
+$clienteDao = new ClienteDaoSql($pdo);
 
-$usuario = $_POST['usuario'];
+$email = $_POST['usuario'];
 $senha = $_POST['senha'];
 
-    $cliente = $clienteDao->pegarDadosCliente($usuario, $senha);
+    $cliente = $clienteDao->findWhere($email, $senha);
 
-    if($cliente->getCli_id() == null) {
+    if($cliente == false) {
         header('location: login.php?auth=1');
     } else {
         $_SESSION['nome'] = $cliente->getCli_nome();

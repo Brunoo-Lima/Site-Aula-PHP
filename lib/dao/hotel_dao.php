@@ -1,45 +1,37 @@
 <?php
-include("C:/xampp/htdocs/Site-Aula-PHP/lib/models/hotel_model.php");
-class HotelDao {
-  private $mysqli;
-  function __construct($mysqli)
-  {
-    $this->mysqli = $mysqli;  
-  }
-  function pegarHotelPorId($hotelId) {
-    $query = "SELECT * FROM hotel WHERE hot_id = ".$hotelId.";";
-    $response = mysqli_query($this->mysqli, $query);
-    $resp = array();
-    if($response == FALSE) { 
-        die(mysqli_error($this->mysqli));
-     }
-    while($row = mysqli_fetch_assoc($response)){
-        $resp[] = $row;
+require_once 'C:xampp/htdocs/Site-Aula-PHP/lib/models/hotel.php';
+
+class HotelDaoSql implements HotelDao {
+    private $pdo;
+    public function __construct(PDO $pdo)
+    {
+        $this->pdo = $pdo;
     }
-    $hotelModel = new HotelModel();
-    $hotel = $hotelModel->fromMap($resp[0]); 
-    return $hotel; 
-  }
 
-  function pegarHoteis() {
-    $query = "SELECT * FROM hotel;";
-    $response = mysqli_query($this->mysqli, $query);
-    $resp = array();
-      if($response == FALSE) { 
-          die(mysqli_error($this->mysqli));
-      }
-      while($row = mysqli_fetch_assoc($response)){
-          $resp[] = $row;
-      }
-      $listHotels = array();
-      foreach($resp as $hot) {
-        $hotelModel = new HotelModel();
-        $hotel = $hotelModel->fromMap($hot);
-        $listHotels[] = $hotel;
-      }
-      return $listHotels;
-  }
+    public function findAll(){
+        $array = [];
+        $sql = $this->pdo->query("SELECT * FROM hotel");
+        if($sql->rowCount() > 0) {
+            $data = $sql->fetchAll();
 
-} 
+            foreach($data as $item) {
+                $h = new Hotel();
+                $hotel = $h->fromMap($item);
 
+                $array[] = $hotel;
+            }
+        }
+        return $array;
+    }
+
+    public function findWhere($id){
+        $sql = $this->pdo->prepare("SELECT * FROM hotel WHERE hot_id = :id");
+        $sql->bindValue(':id', $id);
+        $sql->execute();
+        $data = $sql->fetch();
+        $h = new Hotel();
+        $hotel = $h->fromMap($data);
+        return $hotel;
+    }
+}
 ?>

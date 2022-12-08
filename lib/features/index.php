@@ -1,7 +1,9 @@
 <?php
 session_start();
-include("../dao/hotel_dao.php");
-$hotelDao = new HotelDao(include("../dao/conexao.php"));
+require '../conexao.php';
+require '../dao/hotel_dao.php';
+$hotelDao = new HotelDaoSql($pdo);
+$listHotels = $hotelDao->findAll();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -102,7 +104,6 @@ $hotelDao = new HotelDao(include("../dao/conexao.php"));
         <!--Pacote 1-->
 
       <?php
-        $listHotels = $hotelDao->pegarHoteis();
         foreach($listHotels as $hotel){
           echo '<a id="nomes-tela" href="./telaHotel/reserva.php?hotel_id='.$hotel->getHot_id().'">';
           echo "<div class='card'>";

@@ -1,10 +1,16 @@
 <?php
 
-class ClienteModel{
+class Cliente{
     private $cli_id;
     private $cli_nome;
     private $cli_email;
     private $cli_image;
+    private $cli_senha;
+
+
+    function getCli_senha () {
+        return $this->cli_senha;
+    }
 
     function getCli_id() {
         return $this->cli_id;
@@ -38,13 +44,24 @@ class ClienteModel{
         $this->cli_image = $image;
     }
 
+    function setCli_senha($senha) {
+        $this->cli_senha = $senha;
+    }
+
     function fromMap($arr) {
-        $cliente = new ClienteModel();
+        $cliente = new Cliente();
         $cliente->setCli_id($arr['cli_id']);
         $cliente->setCli_nome($arr['cli_nome']);
         $cliente->setCli_email($arr['cli_email']);
         $cliente->setCli_image($arr['cli_image']);
         return $cliente;
     }
+}
+
+interface ClienteDao {
+    public function create(Cliente $cliente);
+    public function findWhere($email, $senha);
+    public function update(Cliente $cliente);
+    public function delete($id);
 }
 ?>

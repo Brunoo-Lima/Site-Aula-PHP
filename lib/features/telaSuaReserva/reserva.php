@@ -1,11 +1,11 @@
 <?php
     session_start();
-    include("../../dao/reserva_dao.php");
-    include("../../dao/hotel_dao.php");
-    include("../../models/reserva_model.php");
-    $reservaDao = new ReservaDao(include("../../dao/conexao.php"));
-    $hotelDao = new HotelDao(include("../../dao/conexao.php"));
-    $listReservas = $reservaDao->pegarReservas($_SESSION['id']);
+    require '../../conexao.php';
+    require '../../dao/reserva_dao.php';
+    require '../../dao/hotel_dao.php';
+    $reservaDao = new ReservaDaoSql($pdo);
+    $hotelDao = new HotelDaoSql($pdo);
+    $listReservas = $reservaDao->findAllWhere($_SESSION['id']);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -83,25 +83,29 @@
 
         <section class="reserva">
             <?php
-                foreach($listReservas as $reserva) {
-                    $hotel = $hotelDao->pegarHotelPorId($reserva->getHot_id());
-                    $status = '';
-                    if(date('Y-m-d') > date('Y-m-d', strtotime($reserva->getRes_data_saida()))) $status = "Finalizado";
-                    if(date('Y-m-d') <= date('Y-m-d', strtotime($reserva->getRes_data_saida())) and date('Y-m-d') >= date('Y-m-d', strtotime($reserva->getRes_data_entrada()))) $status = "Em andamento";
-                    if(date('Y-m-d') < date('Y-m-d', strtotime($reserva->getRes_data_entrada()))) $status = "Pendente"; 
-                    echo '
-                        <div class="pacotes-reserva">
-                            <img src="'.$hotel->getHot_image().'" alt="">
-                            <div class="card">
-                                <h3>'.$hotel->getHot_nome().'</h3>
-                                <p>R$ '.$hotel->getHot_preco().'</p>
-                                <div class="status-reserva">
-                                <h4>Status da Reserva</h4>
-                                <p>Data: '.date('d/m/Y', strtotime($reserva->getRes_data_entrada())).'</p>
-                                <p class="status">'.$status.'</p>
+                if($listReservas != false) {
+                    foreach($listReservas as $reserva) {
+                        $hotel = $hotelDao->findWhere($reserva->getHot_id());
+                        $status = '';
+                        if(date('Y-m-d') > date('Y-m-d', strtotime($reserva->getRes_data_saida()))) $status = "Finalizado";
+                        if(date('Y-m-d') <= date('Y-m-d', strtotime($reserva->getRes_data_saida())) and date('Y-m-d') >= date('Y-m-d', strtotime($reserva->getRes_data_entrada()))) $status = "Em andamento";
+                        if(date('Y-m-d') < date('Y-m-d', strtotime($reserva->getRes_data_entrada()))) $status = "Pendente"; 
+                        echo '
+                            <div class="pacotes-reserva">
+                                <img src="'.$hotel->getHot_image().'" alt="">
+                                <div class="card">
+                                    <h3>'.$hotel->getHot_nome().'</h3>
+                                    <p>R$ '.$hotel->getHot_preco().'</p>
+                                    <div class="status-reserva">
+                                    <h4>Status da Reserva</h4>
+                                    <p>Data: '.date('d/m/Y', strtotime($reserva->getRes_data_entrada())).'</p>
+                                    <p class="status">'.$status.'</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>';
+                            </div>';
+                    }
+                } else {
+                    echo "<center><h2>Você ainda não fez nenhuma reserva!</h2></center>";
                 }
             ?>
         </section>
