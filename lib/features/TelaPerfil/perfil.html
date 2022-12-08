@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil</title>
+  <link rel="stylesheet" href="./cssPerfil.css">
+</head>
+
+<body>
+  <header>
+    <nav id="menu_title">
+      <h1 class="logo">BeM Viagens</h1>
+      <ul class="nav-list">
+        <li><a href="#">Home</a></li>
+        <li><a href="#Conheça nossos Pacotes">Pacotes</a></li>
+        <li><a href="#Serviços">Serviços</a></li>
+        <?php
+        if(empty($_SESSION['nome'])) {
+          echo '<li><a href="telaCadastro/cadastro.html" class="right" target="_blank">Cadastrar</a></li>';
+          echo '<li><a href="TelaLogin/login.php" class="right" target="_blank">Login</a></li>';
+          echo '</ul>';
+        } else {
+          echo '<li><a href="./telaSuaReserva/reserva.php" target="_blank">Reservas</a></li>';
+          echo "</ul>";
+          echo '<div class="dropdown" style="float:left;">
+            <button class="dropbtn"><div class="space"><img width="50" height="50" src="../images/profile.png"> <br>'.$_SESSION['nome'].'</button>
+            <div class="dropdown-content" style="left:0;">
+              <a href="desconectar.php">Desconectar</a> 
+            </div>
+          </div>';
+        }
+        ?>
+    </nav>
+  </header>
+  <main>
+    <section class="perfil">
+      <div class="info-perfil">
+        <div class="img">
+
+          <img src="/lib/images/foto-perfil.jpg" alt="foto de perfil">
+        </div>
+
+        <div class="info">
+          <h3>Nome da pessoa</h3>
+          <p>email@gmail.com</p>
+        </div>
+
+        <div class="editar-perfil">
+          <ul>
+            <li>
+              <a href="/lib/screens/telaSuaReserva/reserva.php" class="reserva">Minhas Reservas</a>
+            </li>
+            <li><a href="./editarPerfil/editarPerfil.html">Editar Perfil</a></li>
+            <li><a href="">Sair</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Site desenvolvido por <strong>Bruno Lima</strong> e <strong>Miguel Estevao</strong>
+    </p>
+  </footer>
+</body>
+
+</html>
