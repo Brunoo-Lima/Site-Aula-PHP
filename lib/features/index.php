@@ -83,7 +83,7 @@ $listHotels = $hotelDao->findAll();
           echo '<li><a href="./telaSuaReserva/reserva.php" target="_blank">Reservas</a></li>';
           echo "</ul>";
           echo '<div class="dropdown" style="float:left;">
-            <button class="dropbtn"><div class="space"><img width="50" height="50" src="../images/profile.png"> <br>'.$_SESSION['nome'].'</button>
+            <a href="telaPerfil/perfil.php"><button class="dropbtn"><div class="space"><img width="50" height="50" src="../images/profile.png"> <br>'.$_SESSION['nome'].'</button></a>
             <div class="dropdown-content" style="left:0;">
               <a href="desconectar.php">Desconectar</a> 
             </div>

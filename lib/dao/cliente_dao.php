@@ -39,6 +39,7 @@ class ClienteDaoSql implements ClienteDao {
         $sql->bindValue(':imagem', $cliente->getCli_image());
         $sql->execute();
     }
+    
     public function delete($id){
         $sql = $this->pdo->prepare("DELETE FROM cliente WHERE cli_id = :id");
         $sql->bindValue(':id', $id);
