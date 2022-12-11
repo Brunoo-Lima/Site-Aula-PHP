@@ -31,9 +31,17 @@ $listHotels = $hotelDao->findAll();
       cursor: pointer;
     }
 
+    .dropbtn :hover {
+      background-color: transparent;
+    }
+
     .dropdown {
       position: relative;
       display: inline-block;
+    }
+
+    .dropdown :hover {
+      background-color: transparent;
     }
 
     .dropdown-content {
@@ -53,7 +61,9 @@ $listHotels = $hotelDao->findAll();
       display: block;
     }
 
-    .dropdown-content a:hover {background-color: #f1f1f1;}
+    .dropdown-content image a:hover {background-color: none;}
+
+    .dropdown-content a:hover {background-color: black;}
     .dropdown:hover .dropdown-content {display: block;}
 
     #nomes-tela {
@@ -83,7 +93,7 @@ $listHotels = $hotelDao->findAll();
           echo '<li><a href="./telaSuaReserva/reserva.php" target="_blank">Reservas</a></li>';
           echo "</ul>";
           echo '<div class="dropdown" style="float:left;">
-            <a href="telaPerfil/perfil.php"><button class="dropbtn"><div class="space"><img width="50" height="50" src="../images/profile.png"> <br>'.$_SESSION['nome'].'</button></a>
+            <button class="dropbtn"><div class="space"><a href="telaPerfil/perfil.php" style="background-color:transparent;"><img width="50" height="50" src="../images/profile.png"></a><br>'.$_SESSION['nome'].'</button>
             <div class="dropdown-content" style="left:0;">
               <a href="desconectar.php">Desconectar</a> 
             </div>

@@ -78,8 +78,9 @@ nav#menu_title .nav-list a {
 
 nav#menu_title a:hover {
   color: var(--cor3);
-  background-color: var(--cor0);
+  background-color: var(--cor4);
 }
+
 
 nav#menu_title a.right {
   color: var(--cor2);

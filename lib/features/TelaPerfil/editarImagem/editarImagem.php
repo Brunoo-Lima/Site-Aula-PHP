@@ -9,7 +9,7 @@ session_start();
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Perfil</title>
-  <link rel="stylesheet" href="./editarPerfil.css">
+  <link rel="stylesheet" href="./editarImagem.css">
 </head>
 <style>
   .space{
@@ -64,9 +64,9 @@ session_start();
     <nav id="menu_title">
       <h1 class="logo">BeM Viagens</h1>
       <ul class="nav-list">
-        <li><a href="#">Home</a></li>
-        <li><a href="#Conheça nossos Pacotes">Pacotes</a></li>
-        <li><a href="#Serviços">Serviços</a></li>
+        <li><a href="../../index.php">Home</a></li>
+        <li><a href="../../index.php#Conheça nossos Pacotes">Pacotes</a></li>
+        <li><a href="../../index.php#Serviços">Serviços</a></li>
         <?php
         if(empty($_SESSION['nome'])) {
           echo '<li><a href="telaCadastro/cadastro.html" class="right" target="_blank">Cadastrar</a></li>';
@@ -86,44 +86,45 @@ session_start();
     </nav>
   </header>
   <main>
-    <section class="alterar-dados">
-      <div class="info-dados">
-        <h1 class="title">Alteração dos dados</h1>
+    <form method="POST" action="processo.php" enctype="multipart/form-data">>
+      <section class="alterar-dados">
+        <div class="info-dados">
+          <h1 class="title">Alterar imagem</h1>
+          <div class="alterar senha">
+            <input type="file" id="senhanova" class="senha" name='imagem' placeholder="Digite sua nova senha" size="8">
+          </div>
 
-        <div class="alterar nome">
-          <label for="nome">Nome</label>
-          <input type="text" id="nome" placeholder="Nome do usuario">
+          <div class="salvar">
+            <input type="submit" class="btn" value="Salvar" id="save">
+
+            <input type="button" class="btn" value="Cancelar" id="cancel">
+          </div>
         </div>
-
-        <div class="alterar email">
-          <label for="Atemail">Email atual </label>
-          <input type="text" id="Atemail" placeholder="Email atual">
-
-          <label for="Novoemail">Novo Email </label>
-          <input type="text" id="Novoemail" placeholder="Digite seu novo email">
-        </div>
-
-        <div class="alterar senha">
-          <label for="senhaatual">Senha atual </label>
-          <input type="text" id="senhaatual" class="senha" placeholder="Digite sua senha" size="8">
-
-          <label for="senhanova">Nova Senha </label>
-          <input type="text" id="senhanova" class="senha" placeholder="Digite sua nova senha" size="8">
-        </div>
-
-        <div class="salvar">
-          <input type="button" class="btn" value="Salvar" id="save">
-
-          <input type="button" class="btn" value="Cancelar" id="cancel">
-        </div>
-      </div>
-    </section>
+      </section>
+    </form>
   </main>
 
   <footer>
     <p>Site desenvolvido por <strong>Bruno Lima</strong> e <strong>Miguel Estevao</strong>
     </p>
   </footer>
+  <?php
+  if(!empty($_GET['err'])) {
+    if($_GET['err'] == '1') {
+      echo "<script>
+      (function() {
+        alert('Extensão não permitida.');
+      }());
+    </script>";
+    }
+    if($_GET['err'] == '2') {
+      echo "<script>
+      (function() {
+        alert('Por favor, insira uma imagem.');
+      }()); </script>";
+    }
+  }
+  ?>
 </body>
 
 </html>

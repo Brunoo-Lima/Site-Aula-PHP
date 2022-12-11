@@ -90,7 +90,9 @@ session_start();
       <div class="info-perfil">
         <div class="img">
 
-          <img src="../../images/foto-perfil.jpg" alt="foto de perfil">
+          <?php
+            echo "<img src='./editarImagem/Imagens/".$_SESSION['image']."' alt='foto de perfil'>";
+          ?>
         </div>
 
         <div class="info">
@@ -105,7 +107,7 @@ session_start();
             <li>
               <a href="../telaSuaReserva/reserva.php" class="reserva">Minhas Reservas</a>
             </li>
-            <li><a href="./editarPerfil/editarPerfil.php">Editar Perfil</a></li>
+            <li><a href="./editarImagem/editarImagem.php">Editar Imagem</a></li>
           </ul>
         </div>
       </div>

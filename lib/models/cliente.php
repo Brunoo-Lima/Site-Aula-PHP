@@ -61,7 +61,7 @@ class Cliente{
 interface ClienteDao {
     public function create(Cliente $cliente);
     public function findWhere($email, $senha);
-    public function update(Cliente $cliente);
+    public function updateImage($id, $image);
     public function delete($id);
 }
 ?>
